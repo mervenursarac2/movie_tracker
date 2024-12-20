@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "455550634183",
+    "project_id": "authentication-e0e7b",
+    "storage_bucket": "authentication-e0e7b.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:455550634183:android:e5c360cf459833719716e2",
+        "android_client_info": {
+          "package_name": "com.merve.movie_tracker"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBdIYC6x6SPir-sP2-yBcL6CIemLRLVPzo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
