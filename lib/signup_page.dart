@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:movie_tracker/colors.dart';
-import 'package:movie_tracker/home_page.dart';
+import 'package:movie_tracker/HomePage/home_page.dart';
 import 'package:movie_tracker/login_page.dart';
 import 'package:movie_tracker/service/auth.dart';
 
@@ -17,7 +17,7 @@ class _SignupPageState extends State<SignupPage> {
   final password = TextEditingController();
   final confirmPassword = TextEditingController();
 
-  bool isVisible = false;
+  bool isPasswordVisible = false;
 
   String? errormessage;
   Future<void> createUser() async {
@@ -130,12 +130,12 @@ class _SignupPageState extends State<SignupPage> {
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               Padding(
-                                padding:
-                                    const EdgeInsets.fromLTRB(10, 10, 5, 8),
+                                padding: const EdgeInsets.fromLTRB(10, 10, 5, 8),
                                 child: SizedBox(
                                   width: 200,
                                   child: TextFormField(
                                     controller: password,
+                                    obscureText: !isPasswordVisible, // Şifreyi gizlemek için
                                     validator: (value) {
                                       if (value!.isEmpty) {
                                         return "password is required!";
@@ -153,24 +153,35 @@ class _SignupPageState extends State<SignupPage> {
                                       fillColor: butter,
                                       border: OutlineInputBorder(
                                           borderSide: BorderSide.none,
-                                          borderRadius:
-                                              BorderRadius.circular(50)),
+                                          borderRadius: BorderRadius.circular(50)),
+                                      suffixIcon: IconButton(
+                                        icon: Icon(
+                                          isPasswordVisible
+                                              ? Icons.visibility
+                                              : Icons.visibility_off,
+                                          color: darkColor,
+                                        ),
+                                        onPressed: () {
+                                          setState(() {
+                                            isPasswordVisible = !isPasswordVisible;
+                                          });
+                                        },
+                                      ),
                                     ),
                                   ),
                                 ),
                               ),
                               Padding(
-                                padding:
-                                    const EdgeInsets.fromLTRB(5, 10, 10, 8),
+                                padding: const EdgeInsets.fromLTRB(5, 10, 10, 8),
                                 child: SizedBox(
                                   width: 200,
                                   child: TextFormField(
                                     controller: confirmPassword,
+                                    obscureText: !isPasswordVisible,
                                     validator: (value) {
                                       if (value!.isEmpty) {
                                         return "password is required!";
-                                      } else if (password.text !=
-                                          confirmPassword.text) {
+                                      } else if (password.text != confirmPassword.text) {
                                         return "password dont match!";
                                       }
                                       return null;
@@ -181,17 +192,30 @@ class _SignupPageState extends State<SignupPage> {
                                       hintStyle: TextStyle(
                                           color: darkColor.withOpacity(0.5),
                                           fontSize: 17),
-                                      hintText: " confirm password",
+                                      hintText: "confirm password",
                                       filled: true,
                                       fillColor: butter,
                                       border: OutlineInputBorder(
                                           borderSide: BorderSide.none,
-                                          borderRadius:
-                                              BorderRadius.circular(50)),
+                                          borderRadius: BorderRadius.circular(50)),
+                                      suffixIcon: IconButton(
+                                        icon: Icon(
+                                          isPasswordVisible
+                                              ? Icons.visibility
+                                              : Icons.visibility_off,
+                                          color: darkColor,
+                                        ),
+                                        onPressed: () {
+                                          setState(() {
+                                            isPasswordVisible = !isPasswordVisible;
+                                          });
+                                        },
+                                      ),
                                     ),
                                   ),
                                 ),
                               ),
+
                             ]),
                       ),
                       Padding(

@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:movie_tracker/colors.dart';
-import 'package:movie_tracker/home_page.dart';
+import 'package:movie_tracker/HomePage/home_page.dart';
 import 'package:movie_tracker/service/auth.dart';
 import 'package:movie_tracker/signup_page.dart';
 //merve@deneme.com deneme123
@@ -15,8 +15,11 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+
   final email = TextEditingController();
   final password = TextEditingController();
+
+  bool isPasswordVisible = false;
 
   String? errormessage;
 
@@ -119,11 +122,12 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.fromLTRB(10, 10, 10, 8),
+                            padding: const EdgeInsets.fromLTRB(10, 10, 5, 8),
                             child: SizedBox(
                               width: 300,
                               child: TextFormField(
                                 controller: password,
+                                obscureText: !isPasswordVisible, // Şifreyi gizlemek için
                                 validator: (value) {
                                   if (value!.isEmpty) {
                                     return "password is required!";
@@ -142,6 +146,19 @@ class _LoginPageState extends State<LoginPage> {
                                   border: OutlineInputBorder(
                                       borderSide: BorderSide.none,
                                       borderRadius: BorderRadius.circular(50)),
+                                  suffixIcon: IconButton(
+                                    icon: Icon(
+                                      isPasswordVisible
+                                          ? Icons.visibility
+                                          : Icons.visibility_off,
+                                      color: darkColor,
+                                    ),
+                                    onPressed: () {
+                                      setState(() {
+                                        isPasswordVisible = !isPasswordVisible;
+                                      });
+                                    },
+                                  ),
                                 ),
                               ),
                             ),
